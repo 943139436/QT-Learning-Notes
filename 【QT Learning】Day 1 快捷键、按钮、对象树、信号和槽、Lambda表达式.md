@@ -58,8 +58,6 @@
 6. 设置窗口标题 setWindowTitle()
 7. 设置窗口固定大小 setFixedSize（）
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2021011718035013.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mjg3NzQyNg==,size_16,color_FFFFFF,t_70)
-
 # 五、对象树
 1. 当创建的对象在堆区时候，如果指定的父亲是QObject派生下来的类或者QObject子类派生下来的类，可以不用管理释放的操作，将对象会放入到对象树中。
 2. 一定程度上简化了内存回收机制
