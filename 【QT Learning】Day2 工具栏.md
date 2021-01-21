@@ -5,7 +5,7 @@
 4. 浮动窗口（addDockWidget）可以多个
 5. 核心部件（setCentralWidget）只能一个
 
-```
+```C++
 #include "mainwindow.h"
 #include <QMenuBar>
 #include <QToolBar>
@@ -98,5 +98,3 @@ MainWindow::~MainWindow()
 2. 右键项目->添加新文件->Qt->Qt resource file->给资源文件起名（res）
 3. 点击生成的res.qrc，添加文件前缀（\）和文件
 4. 使用时":+前缀名+文件名"
-# 三、对话框
-1. 
