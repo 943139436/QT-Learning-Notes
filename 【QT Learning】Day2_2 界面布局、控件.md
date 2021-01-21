@@ -58,9 +58,9 @@ Widget::~Widget()
 
 ```
 <br>[视频教程](https://www.bilibili.com/video/BV1g4411H78N?p=24)
-2. QListWidget列表容器
+<br>2. QListWidget列表容器
 <br>[视频教程](https://www.bilibili.com/video/BV1g4411H78N?p=25)
-3. QTreeWidget
+<br>3. QTreeWidget
 ```C++
 #include "widget.h"
 #include "ui_widget.h"
@@ -98,7 +98,7 @@ Widget::~Widget()
 }
 ```
 <br>[视频教程](https://www.bilibili.com/video/BV1g4411H78N?p=26)
-4. QTableWidget
+<br>4. QTableWidget
 ```C++
 #include "widget.h"
 #include "ui_widget.h"
@@ -144,7 +144,7 @@ Widget::~Widget()
 
 ```
 <br>[视频教程](https://www.bilibili.com/video/BV1g4411H78N?p=27)
-5. 其他控件介绍
+<br>5. 其他控件介绍
 ```C++
 #include "widget.h"
 #include "ui_widget.h"
