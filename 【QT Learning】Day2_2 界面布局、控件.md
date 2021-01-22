@@ -9,7 +9,7 @@
 # 二、控件
 1. 按钮组
 <br>1.1 QPushButton 常用按钮
-<br>1.2 QToolButton 工具按钮
+<br>1.2 QToolButton 工具按钮 常用于显示图片或者图片与文字一起显示
 <br>1.3 radioButton 单选按钮
 <br>1.4 chekbox 多选按钮
 ```C++
