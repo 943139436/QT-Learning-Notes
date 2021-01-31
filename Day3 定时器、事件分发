@@ -1,0 +1,110 @@
+# 一、定时器1
+1. 利用事件 void  timerEvent ( QTimerEvent * ev)
+2. 启动定时器startTimer(1000) 单位为ms
+3. timerEvent的返回值是定时器的唯一标识，可以和ev->timerId做比较
+# 二、定时器2
+1. 利用定时器类QTimer
+2. 创建定时器对象QTimer *timer = new QTimer(this)
+3. 启动定时器 timer->start(毫秒数)
+4 发送信号 timeout 进行监听
+5. 暂停 timer->stop
+# 三、 event事件
+1. 用途：用于事件分发
+2. 也可以做拦截操作，不建议
+3. bool event(QEvent *e)
+4. 返回值如果是true代表用户处理这个事件，不向下分发了
+5. e->type（）==鼠标按下...
+# 四、事件过滤器
+1. 用途：在程序将事件分发到事件分发器前，可以利用过滤器做拦截
+2. 给事件安装事件过滤器
+3， 重写evenFliter函数（obj, ev）
+# 五、相关代码
+```C++
+#include "widget.h"
+#include "ui_widget.h"
+#include <QTimer> //定时器类
+#include <QMouseEvent>
+#include <QDebug>
+Widget::Widget(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::Widget)
+{
+    ui->setupUi(this);
+
+    //启动定时器
+    id1 = startTimer(1000); //参数1  间隔  单位 毫秒
+
+    id2 = startTimer(2000);
+
+
+    //定时器第二种方式
+    QTimer * timer = new QTimer(this);
+    //启动定时器
+    timer->start(500);
+
+    connect(timer,&QTimer::timeout,[=](){
+        static int num = 1;
+
+        //label4 每隔0.5秒+1
+        ui->label_4->setText(QString::number(num++));
+    });
+
+
+    //点击暂停按钮 实现停止定时器
+    connect(ui->btn,&QPushButton::clicked,[=](){
+        timer->stop();
+    });
+
+
+
+
+    //给label1 安装事件过滤器
+    // 步骤1  安装事件过滤器
+    ui->label->installEventFilter(this);
+
+
+}
+
+ // 步骤2  重写 eventfilter事件
+bool Widget::eventFilter(QObject * obj , QEvent * e)
+{
+    if(obj == ui->label)
+    {
+        if(e->type() == QEvent::MouseButtonPress)
+        {
+            QMouseEvent * ev  = static_cast<QMouseEvent *>(e);
+            QString str = QString( "事件过滤器中：：鼠标按下了 x = %1   y = %2  globalX = %3 globalY = %4 " ).arg(ev->x()).arg(ev->y()).arg(ev->globalX()).arg(ev->globalY());
+            qDebug() << str;
+            return true; //true代表用户自己处理这个事件，不向下分发
+        }
+    }
+
+    //其他默认处理
+    return QWidget::eventFilter(obj,e);
+}
+
+void Widget::timerEvent(QTimerEvent * ev)
+{
+    if(ev->timerId() == id1)
+    {
+        static int num = 1;
+
+        //label2 每隔1秒+1
+        ui->label_2->setText(  QString::number(num++));
+    }
+
+    if(ev->timerId() == id2)
+    {
+    //label3  每隔2秒 +1
+    static int num2 = 1;
+    ui->label_3->setText(  QString::number(num2++));
+    }
+
+}
+
+Widget::~Widget()
+{
+    delete ui;
+}
+
+```
